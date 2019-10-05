@@ -1,0 +1,95 @@
+<html>
+	<head>
+		{% block head %}
+		<meta charset="utf-8"/>
+		<!--JQuery --><script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+		<!--bootstrap same as before -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<style type="text/css">
+			#logo {
+				height: 24px;
+				width: 40px;
+			}
+			.nav-img {
+				max-height: 30px;
+				max-width: 30px;
+			}
+			.navbar-nav {
+			}
+			#home_button {
+				padding-left: 30px;
+				padding-right: 30px;
+			}
+			.bold {
+				font-weight: bold;
+			}
+			.big {
+				font-size: 18px;
+			}
+			.bigger {
+				font-size: 22px;
+			}
+			.huge {
+				font-size: 28px;
+			}
+			.center-align {
+				text-align: center;
+			}
+			.left-align {
+				text-align: left;
+			}
+			.amazon-img {
+				height: 40px;
+				max-width: auto;
+				position: absolute;
+				left: 25px;
+				bottom: 15px;
+			}
+			.alert-danger:hover, .alert-danger:active, .alert-danger:focus {
+				background-color: #dbaaaf;
+			}
+			.alert-primary:hover, .alert-primary:active, .alert-primary:focus {
+				background-color: #a8c0d9;
+			}
+			.alert-secondary:hover, .alert-secondary:active, .alert-secondary:focus {
+				background-color: #c3c4c6;
+			}
+			.alert-dark:hover, .alert-dark:active, .alert-dark:focus {
+				background-color: #c3c4c6;
+			}
+			.alert-info:hover, .alert-info:active, .alert-info:focus {
+				background-color: #a0ccd1;
+			}
+			a.no-underline {
+				text-decoration: none;
+				color: inherit;
+			}
+		</style>
+		{% endblock %}
+	</head>
+	<body>
+		<!-- <div class="container"> -->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				
+				<a class="navbar-brand" href="/">
+					<img id="logo" src="/static/media/logo.svg">
+					PC Builder
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse">
+					<div class="navbar-nav" id="navbar_buttons">
+						<a class="nav-item nav-link" href="{{ url_for('view_builds') }}" id="home_button"><img class="nav-img" title="Home" src="/static/media/home.svg"></a>
+					</div>
+				</div>
+			</nav>
+			{% block content %}
+			{% endblock %}
+		<!-- </div> -->
+	</body>
+</html>

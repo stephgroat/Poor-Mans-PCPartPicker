@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'pick_item.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'pick_item_build_column.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'expanded_item.js') }}"></script>
+		<style type="text/css">
+			#title {
+				margin-top: 20px;
+				padding: 20px;
+				font-size: 28px;
+				font-weight: bold;
+				text-align: center;
+			}
+			#entry {
+				padding: 20px;
+			}
+			#data {
+				padding: 10px;
+			}
+			.data-row {
+				padding-top: 10px;
+			}
+			.btn.lightgray {
+				background-color: lightgray;
+			}
+			.container {
+				max-width: 80%
+			}
+
+			.part-item {
+				height: 150px;
+			}
+			.left-align.data-col {
+				padding-left: 10px;
+				max-width: 120px;
+			}
+
+			.build-item {
+				height: 165px;
+				padding-bottom: 15px;
+			}
+			.build-item-wrapper {
+				padding-bottom: 15px;
+			}
+
+			.alert-primary:hover, .alert-primary:active, .alert-primary:focus {
+				background-color: #a8c0d9;
+			}
+			.alert-secondary:hover, .alert-secondary:active, .alert-secondary:focus {
+				background-color: #c3c4c6;
+			}
+			.add_to_build {
+				width: 100%;
+			}
+			.spacer {
+				padding-right: 10px;
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 100px;
+			}
+			#submit_button {
+				padding-top: 20px;
+			}
+			#data_container {
+				padding-left: 50px;
+			}
+			#parts_container .section-title {
+				padding-top: 75px;
+				left: 30%;
+			}
+			#data_container .section-title {
+				left: 47%;
+			}
+			#filter_container {
+				text-transform: capitalize;
+				padding-top: 50px;
+			}
+			#back_to_build {
+				padding-left: 10px;
+				margin-left: 30px;
+			}
+			#build_link_text {
+				padding-left: 10px;
+			}
+			.section-title {
+				font-weight: bold;
+				font-size: 24px;
+				padding-bottom: 15px;
+				padding-top: 10px;
+
+			    position: relative;
+			    top: 0; left: 35%; bottom: 0; right: 0;
+				margin: auto;
+				width: 100%;
+			}
+			#build_title {
+				font-weight: bold;
+				font-size: 18px;
+				padding-left: 350px;
+				padding-bottom: 0px;
+				padding-top: 0px;
+			}
+		</style>
+    <script>
+        var data = {{data|tojson}} 
+        var build = {{build|tojson}} 
+    </script>
+{% endblock %}
+
+{% block content %}
+	<a class="nav-item nav-link" href="{{ url_for('build') }}" id="back_to_build"><img class="nav-img" src="/static/media/build.svg"><span id="build_link_text">Return to current build</span><span id="build_title"></span></a>
+
+<!-- Modal -->
+<div class="modal fade" id="part-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title big bold" id="part-modal-label"></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-2" id="filter_container">
+				<div class="section-title">Filters</div>
+			</div>
+			<div class="col-7" id="data_container">
+			</div>
+			<div class="col-3" id="parts_container">
+				<div class="section-title">Current Build</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

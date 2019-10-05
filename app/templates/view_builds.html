@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'view_builds.js') }}"></script>
+		<style type="text/css">
+			#title {
+				margin-top: 10px;
+				padding: 10px;
+				font-size: 28px;
+				font-weight: bold;
+				text-align: center;
+			}
+			.stats {
+				text-align: center;
+				margin-top: 10px;
+				padding: 5px;
+				background-color: #EAEAEA;
+			}
+			.stats-data {
+				text-align: center;
+				padding: 5px;
+				background-color: #F3F3F3;
+			}
+			#build_labels {
+				padding-top: 10px;
+			}
+			#builds_container {
+				padding-top: 25px;
+			}
+			.build-link {
+				padding-bottom: 20px;
+				width: 100%;
+			}
+			.build-item {
+				height: 220px;
+			}
+			.top-pad {
+				padding-top: 20px;
+			}
+			img {
+				max-width: 100%;
+				max-height: 100px;
+			}
+		</style>
+    <script>
+        var data = {{data|tojson}} 
+    </script>
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12" id="title">
+				Builds
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<a class="btn btn-primary btn-block" href="build/0" id="new_build">New Build</a>
+			</div>
+		</div>
+		<div class="row" id="builds_container">
+		</div>
+	</div>
+{% endblock %}

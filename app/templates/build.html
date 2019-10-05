@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+{% block head %}
+	{{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'build.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'expanded_item.js') }}"></script>
+	<style type="text/css">
+		#title {
+			margin-top: 20px;
+			padding: 20px;
+			font-size: 28px;
+			font-weight: bold;
+			text-align: center;
+		}
+		#new_name {
+			width: 100%;
+		}
+		img {
+			max-width: 100%;
+			max-height: 100px;
+		}
+		.warning {
+			height: 20px;
+			width: 20px;
+			margin-right: 10px;
+			margin-left: 20px;
+		}
+		.part_item {
+			padding-bottom: 25px;
+		}
+		.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+		    /*background-color: gray;*/
+		    border-width: 0px !important;
+		}
+		.container {
+			max-width: 80%
+		}
+		.left-align.data-col {
+			padding-left: 10px;
+			max-width: 120px;
+		}
+
+		.section-title {
+			font-weight: bold;
+			font-size: 24px;
+			padding-bottom: 25px;
+		}
+
+		#next_item {
+			padding-top: 25px;
+			padding-bottom: 50px;
+			height: 350px;
+		}
+		#next_item .btn{
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		#upcoming_item {
+			padding-bottom: 50px;
+		}
+		#upcoming_item .btn{
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		#conflicts {
+			padding: 10px;
+		}
+
+		#finished_container {
+		}
+
+		.big-btn {
+			height: 200px;
+		}
+		.med-btn {
+			height: 180px;
+		}
+		#finish {
+			padding-left: 450px;
+			padding-top: 5px;
+		}
+		#new_name {
+			display: inline;
+			padding-bottom: 5px;
+			width: 400px;
+		}
+		#finish_btn {
+			background-color: darkgray;
+			color: black;
+			display: inline;
+			width: 150px;
+		}
+		#finish_btn > img {
+			margin-right: 10px;
+		}
+
+		#completion-alert {
+			text-align: center;
+			font-weight: bold;
+			font-size: 28px;
+		}
+
+		.remove-btn {
+		    position: absolute;
+		    top: -10px; left: 0; bottom: 0; right: 0;
+			margin-left: auto;
+			width: 35px;
+			height: 35px;
+		}
+		.remove-btn > img {
+			width:  25px;
+			height: 25px;
+		}
+		.modal-title {
+			margin-left: auto;
+		}
+		.part-img {
+			height: 100px;
+		}
+	</style>
+    <script>
+        var data = {{data|tojson}} 
+    </script>
+{% endblock %}
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="part-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title big bold" id="part-modal-label"></span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+	<div class="container">
+		<div id="finish">
+			<input id="new_name" placeholder="Build Name"></input>
+			<button class="btn btn-block" id="finish_btn"><img class="nav-img" title="Save" src="/static/media/save.svg">Save Build</button>
+		</div>
+		<div class="row" id="in_progress_container">
+			<div class="col-7">
+				<div class="row" id="next_item">
+					<div class="col-2">
+					</div>
+					<div class="col-8 part_item">
+						<button class="btn btn-block big-btn" data-toggle="" data-target="" id="cpu">Processor</button>
+					</div>
+				</div>
+				<div class="row" id="upcoming_item">
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="cooler">CPU Cooler</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="motherboard">Motherboard</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="gpu">Graphics Card</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="psu">Power Supply</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="ram">RAM</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="storage">Storage</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="case">Case</button>
+					</div>
+					<div class="col-3 part_item">
+						<button class="btn btn-block" data-toggle="" data-target="" id="monitor">Monitor</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-5" id="conflicts">
+				<div class="row">
+					<div class="col-12" id="alerts">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="finished_container">
+		</div>
+	</div>
+	<div id="results">
+	</div>
+{% endblock %}
+
+
+
